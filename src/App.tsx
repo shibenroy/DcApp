@@ -12,6 +12,7 @@ import { Navigation } from "@/components/ui/navigation";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "@/hooks/useAuth";
 import Announcements from "./pages/Announcements";
+import Dashboard from "./pages/Dashboard";  
 
 const queryClient = new QueryClient();
 
@@ -22,9 +23,15 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Navigate to="/auth" replace />} />
+          <Routes>  
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/dashboard" element={
+              <div className="min-h-screen bg-background">
+                <Navigation />
+                <Dashboard />
+              </div>
+            } />
             <Route path="/events" element={
               <div className="min-h-screen bg-background">
                 <Navigation />

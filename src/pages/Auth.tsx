@@ -70,7 +70,7 @@ export default function Auth() {
         const { error } = await signIn(formData.email, formData.password);
         
         if (!error) {
-          navigate("/");
+          navigate("/dashboard");
         }
       }
     } catch (error: any) {
@@ -192,7 +192,7 @@ export default function Auth() {
                         className="pl-10"
                         value={formData.password}
                         onChange={(e) => handleInputChange("password", e.target.value)}
-                        required
+                          
                       />
                     </div>
                   </div>
