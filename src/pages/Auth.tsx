@@ -168,7 +168,7 @@ export default function Auth() {
                         type="email"
                         placeholder={
                           authMode === "student"
-                            ? "Enter your student email"
+                            ? "Enter your student email"  
                             : authMode === "teacher"
                             ? "Enter your teacher email"
                             : "Enter your participant email"
