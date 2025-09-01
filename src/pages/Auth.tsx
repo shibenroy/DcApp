@@ -86,7 +86,7 @@ export default function Auth() {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            SchoolEvents
+            EduSync
           </h1>
           <p className="text-muted-foreground">
             Access your school events platform
@@ -127,16 +127,23 @@ export default function Auth() {
             <CardTitle className="flex items-center justify-center gap-2">
               {authMode === "student" ? (
                 <GraduationCap className="h-5 w-5 text-primary" />
-              ) : (
+              ) : authMode === "teacher" ? (
                 <Users className="h-5 w-5 text-primary" />
+              ) : (
+                <User className="h-5 w-5 text-primary" />
               )}
-              {authMode === "student" ? "Student Access" : "Teacher Portal"}
+              {authMode === "student"
+                ? "Student Access"
+                : authMode === "teacher"
+                ? "Teacher Portal"
+                : "Participant Portal"}
             </CardTitle>
             <CardDescription>
-              {authMode === "student" 
+              {authMode === "student"
                 ? "Register or sign in to manage your event registrations"
-                : "Sign in to manage school events and view analytics"
-              }
+                : authMode === "teacher"
+                ? "Sign in to manage school events and view analytics"
+                : "Sign in or sign up to participate in school events"}
             </CardDescription>
           </CardHeader>
 
@@ -156,15 +163,21 @@ export default function Auth() {
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                       <Input
-                         id="email"
-                         type="email"
-                         placeholder={`Enter your ${authMode} email`}
-                         className="pl-10"
-                         value={formData.email}
-                         onChange={(e) => handleInputChange("email", e.target.value)}
-                         required
-                       />
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder={
+                          authMode === "student"
+                            ? "Enter your student email"
+                            : authMode === "teacher"
+                            ? "Enter your teacher email"
+                            : "Enter your participant email"
+                        }
+                        className="pl-10"
+                        value={formData.email}
+                        onChange={(e) => handleInputChange("email", e.target.value)}
+                        required
+                      />
                     </div>
                   </div>
 
@@ -172,20 +185,28 @@ export default function Auth() {
                     <Label htmlFor="password">Password</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                       <Input
-                         id="password"
-                         type="password"
-                         placeholder="Enter your password"
-                         className="pl-10"
-                         value={formData.password}
-                         onChange={(e) => handleInputChange("password", e.target.value)}
-                         required
-                       />
+                      <Input
+                        id="password"
+                        type="password"
+                        placeholder="Enter your password"
+                        className="pl-10"
+                        value={formData.password}
+                        onChange={(e) => handleInputChange("password", e.target.value)}
+                        required
+                      />
                     </div>
                   </div>
 
                    <Button type="submit" className="w-full" disabled={loading}>
-                     {loading ? "Signing In..." : `Sign In as ${authMode === "student" ? "Student" : "Teacher"}`}
+                     {loading
+                       ? "Signing In..."
+                       : `Sign In as ${
+                           authMode === "student"
+                             ? "Student"
+                             : authMode === "teacher"
+                             ? "Teacher"
+                             : "Participant"
+                         }`}
                    </Button>
 
                   <div className="text-center">

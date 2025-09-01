@@ -45,7 +45,7 @@ export function Navigation() {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/" className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                SchoolEvents
+                EduSync
               </Link>
             </div>
             {/* Desktop Navigation */}

@@ -49,7 +49,7 @@ export default function Dashboard() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold">
-              Welcome to SchoolEvents
+              Welcome to EduSync
             </h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl">
               Manage and organize all your school events efficiently in one place
